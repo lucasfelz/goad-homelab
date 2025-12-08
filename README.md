@@ -61,10 +61,10 @@ Este projeto documenta a implementação completa de um homelab focado em cibers
 | VLAN | Nome | Rede | Descrição | Internet |
 |------|------|------|-----------|----------|
 | **1** | WAN | DHCP | Internet via ISP | ✅ |
-| **10** | Home LAN | 192.168.10.0/24 | Rede principal, gerenciamento Proxmox | ✅ |
-| **20** | GOAD Lab | 192.168.20.0/24 | Ambiente Active Directory vulnerável (ISOLADO) | ❌ |
-| **30** | Gerenciamento | 192.168.30.0/24 | Máquina de ataque, acesso limitado | ⚠️ Limitado |
-| **99** | QUARENTENA (Huawei Access Point) | 192.168.99.0/24 | Rede WiFi isolada, acesso limitado | ⚠️ Limitado |
+| **10** | LAN (Home Ethernet environment) | 192.168.10.0/24 | Rede principal, gerenciamento Proxmox | ✅ |
+| **20** | VLAN20_TARGETS | 192.168.20.0/24 | Ambiente Active Directory vulnerável (ISOLADO) | ❌ |
+| **30** |VLAN30_ATTACK | 192.168.30.0/24 | Máquina de ataque, acesso limitado | ⚠️ Limitado |
+| **99** | VLAN99_QUARENTENA(Huawei Access Point) | 192.168.99.0/24 | Rede WiFi isolada, acesso limitado - Sem acesso a LAN - | ⚠️ Limitado |
 
 ---
 
@@ -78,7 +78,7 @@ RAM:     16GB DDR4 (mínimo) - Recomendado: 32GB+
 Storage: SSD 256GB+ (para VMs GOAD) + HDD para backups
 NICs:    2x Ethernet (1x onboard + 1x USB)
          - eth0 (enp5s0): WAN/Internet
-         - eth1 (enx00e04c6801c8): LAN/Switch      # Uso adaptador USB para Ethernet com 2500mpbs
+         - eth1 (enx00e04c6801c8): LAN/Switch      # Uso adaptador USB para Ethernet com 2500mpbs - Até aqui funcionou sem nenhum tipo de problema -.
 ```
 
 ### Cliente/Atacante
@@ -172,7 +172,7 @@ Internet
 - **VLAN 20 → VLAN 10** (GOAD não acessa rede doméstica)
 - **VLAN 30 → VLAN 10** (Kali não acessa rede doméstica)
 - **VLAN 10 → VLAN 20** (rede doméstica não acessa GOAD)
-
+- **VLAN99 → VLAN 10** (rede WiFi não acessa rede LAN doméstica)
 ---
 
 ## Guias de Instalação
