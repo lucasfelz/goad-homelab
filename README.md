@@ -86,7 +86,7 @@ NICs:    2x Ethernet (1x onboard + 1x USB)
 ```
 Laptop com:
 - 8GB RAM mínimo (para rodar VM Kali ou dual-boot) # Uso 16gb
-- Conexão via switch (VLAN 30) ou WiFi
+- Conexão via switch (VLAN 30) ou VPN
 ```
 
 ### Rede Física
