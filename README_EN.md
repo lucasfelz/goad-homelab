@@ -61,10 +61,10 @@ This project documents the complete implementation of a homelab focused on cyber
 | VLAN | Name | Network | Description | Internet |
 |------|------|------|-----------|----------|
 | **1** | WAN | DHCP | Internet via ISP | ✅ |
-| **10** | Home LAN | 192.168.10.0/24 | Main network, Proxmox management | ✅ |
-| **20** | GOAD Lab | 192.168.20.0/24 | Vulnerable Active Directory environment (ISOLATED) | ❌ |
-| **30** | Management | 192.168.30.0/24 | Attack machine, limited access | ⚠️Limited |
-| **99** | QUARENTENA (Huawei Access Point) | 192.168.99.0/24 | Network WiFi isolated, limited access | ⚠️ Limited |
+| **10** | LAN (Home Ethernet Environment) | 192.168.10.0/24 | Main network, Proxmox management | ✅ |
+| **20** | VLAN20_TARGETS | 192.168.20.0/24 | Vulnerable Active Directory environment (ISOLATED) | ❌ |
+| **30** | VLAN30_ATTACK | 192.168.30.0/24 | Attack machine, limited access | ⚠️Limited |
+| **99** | VLAN99_QUARENTENA (Huawei Access Point) | 192.168.99.0/24 | Network WiFi isolated, limited access - access blocked to LAN - | ⚠️ Limited |
 
 ---
 
@@ -172,7 +172,7 @@ Internet
 - **VLAN 20 → VLAN 10** (GOAD doesn't access home network)
 - **VLAN 30 → VLAN 10** (Kali doesn't access home network)
 - **VLAN 10 → VLAN 20** (home network doesn't access GOAD)
-
+- **VLAN 99 → VLAN 10** (WiFi network have access blocked to LAN)
 ---
 
 ## Installation Guides
